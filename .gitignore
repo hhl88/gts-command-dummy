@@ -131,6 +131,4 @@ ansible/volumes
 
 public/src_ionic/www
 
-assets/
 global/
-api/
