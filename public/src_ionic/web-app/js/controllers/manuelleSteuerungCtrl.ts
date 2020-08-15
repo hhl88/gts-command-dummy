@@ -95,7 +95,6 @@ function Controller($scope, restApi, commands: api.Frontend, $ionicPopup) {
   $scope.manualModus.status = true;
 
   $scope.isOnline = ventil => ventil.online;
-  // $scope.isOffline = item => !item.online;
 
   $scope.isActivated = (what, item) => Boolean($scope.activatedItems[what].find(e => e.id === item.id));
 
@@ -125,7 +124,7 @@ function Controller($scope, restApi, commands: api.Frontend, $ionicPopup) {
     if (res.out.indexOf(comManual) > -1) {
       $scope.manualModus.status = true;
     }
-    //
+
     if (res.out.indexOf(comAutomatic) > -1) {
       $scope.manualModus.status = false;
     }
@@ -138,11 +137,7 @@ function Controller($scope, restApi, commands: api.Frontend, $ionicPopup) {
     console.log(res);
     $scope.manualModus.status = res.out.trim() === 'MANUAL' ? true : false;
 
-    // $scope.manualModus.status = !$scope.manualModus.status ? true : false;
-
     if ($scope.manualModus.status) {
-      //   await $scope.checkPumpe();
-      // await $scope.getStats();
       await $scope.checkStatus();
     }
 
@@ -211,7 +206,7 @@ function Controller($scope, restApi, commands: api.Frontend, $ionicPopup) {
     const tempValues = handleResponse(res.out, /T.?:[+-]?\d+\.\d+/g, false);
     const flowValues = handleResponse(res.out, /F.?:\d+\.\d+/g, false);
     const pressureValues = handleResponse(res.out, /D:\d+\.\d+/g, false);
-    console.log('pre', pressureValues)
+
     $scope.statistics = handleNewStatistic(tempValues);
     $scope.statistics = handleNewStatistic(flowValues);
     $scope.statistics = handleNewStatistic(pressureValues);
@@ -236,8 +231,8 @@ function Controller($scope, restApi, commands: api.Frontend, $ionicPopup) {
     $scope.sensors.forEach(e => delete e.out);
     const activated = $scope.sensors.filter(e => e.checked);
     const template = sensor => commands.setZero(sensor.id.toString());
-    // let res = await Promise.all(activated
-    //   .map(sensor => restApi.executeCommand(template(sensor))));
+    let res = await Promise.all(activated
+      .map(sensor => restApi.executeCommand(template(sensor))));
     $scope.$apply();
   };
 
@@ -269,28 +264,6 @@ function Controller($scope, restApi, commands: api.Frontend, $ionicPopup) {
     } else {
       $scope.activatedItems[what].splice(ix, 1);
     }
-    console.log('Activated:', what, $scope.activatedItems[what]);
-  };
-
-
-  $scope.checkPumpe = async () => {
-    // const template = () => commands.getPump();
-    // const res = await restApi.executeCommand(template());
-
-    // TODO: parse result
-    // switch (res.out) {
-    //   case '0':
-    //     $scope.pumpeProps.status = false;
-    //     break;
-    //   case '1':
-    //     $scope.pumpeProps.status = true;
-    //     break;
-    //   default:
-    //     console.log('No option matching', res.out);
-    //   }
-
-    // $scope.lastTimeCheckedPumpe = new Date();
-    // $scope.$apply();
   };
 
 
@@ -352,26 +325,26 @@ function Controller($scope, restApi, commands: api.Frontend, $ionicPopup) {
 
   $scope.timerStart = async () => {
     const template = () => commands.timerStart();
-    // const res = await restApi.executeCommand(template());
-    await $scope.checkPumpe();
+    const res = await restApi.executeCommand(template());
+    await getStats();
   };
 
   $scope.timerStartKW = async () => {
     const template = () => commands.timerStartKW();
-    // const res = await restApi.executeCommand(template());
+    const res = await restApi.executeCommand(template());
     await $scope.checkPumpe();
   };
 
   $scope.timerStop = async () => {
     const template = () => commands.timerStop();
-    // const res = await restApi.executeCommand(template());
-    await $scope.checkPumpe();
+    const res = await restApi.executeCommand(template());
+    await getStats();
   };
 
   $scope.timerStopKS = async () => {
     const template = () => commands.timerStopKS();
-    // const res = await restApi.executeCommand(template());
-    await $scope.checkPumpe();
+    const res = await restApi.executeCommand(template());
+    await getStats();
   };
 
   $scope.startSpuelen = async () => {
