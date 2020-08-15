@@ -1,0 +1,153 @@
+/* Empty. Add your own CSS if you like */
+@import "../lib/ionic/scss/_variables.scss";
+
+.divider {
+  border-top: 2px solid black;
+  margin: 10px 0;
+}
+
+.text-long {
+  overflow: hidden visible;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  padding: 10px;
+}
+
+.button-card-wrapper {
+  overflow: hidden;
+  border-radius: 2px;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.button-card {
+  border-radius: 2px;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 42px;
+}
+
+.button-item {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 2px !important;
+}
+
+.vertical-middle {
+  display: flex;
+  align-items: center;
+}
+
+.content-middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.justify-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.justify-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.text-field {
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background-color: transparent !important;
+  text-align: center;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  font-size: 30px !important;
+}
+
+.label-box {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 2px !important;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 42px;
+}
+
+.session-title {
+  background-color: #333333;
+  color: #ffffff;
+  overflow: hidden;
+  border-radius: 2px;
+  padding: 14px 0;
+  margin: 0;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 20px;
+}
+
+.session-title-button {
+  background-color: #886aea;
+  color: #ffffff;
+  overflow: hidden;
+  border-radius: 2px;
+  padding: 10px 0;
+  margin: 0;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: 20px;
+  width: 100%;
+  border: none;
+}
+
+.session-title-button:hover {
+  background-color: #880eee;
+}
+
+.button-assertive:hover {
+  background-color: #D0573A;
+}
+
+.button-calm:hover {
+  background-color: #1195F0;
+}
+
+.button-royal:hover {
+  background-color: #880eee;
+}
+
+.button-energized:hover {
+  background-color: #ffa900;
+}
+
+.label-description {
+  font-size: 16px;
+  overflow: hidden visible;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+}
+
+.pump-speed-btn {
+  height: 50px !important;
+  background-color: #666;
+  color: white;
+}
+
+.pump-speed-btn:hover {
+  background-color: #333;
+  color: white;
+
+}

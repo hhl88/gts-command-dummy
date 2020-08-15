@@ -1,0 +1,46 @@
+# ~/.tmuxinator/gts-control.yml
+
+name: gts-command
+root: ~/dev/work/gts-command-app/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+pre: echo -e "\033]6;1;bg;green;brightness;255\a"
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t gts-command
+
+windows:
+  - server:
+      layout: tiled
+      panes:
+        - npm start
+        - npm run dev
+        - gulp watch
+        - ggpull
+  - copying:
+      layout: tiled
+      pre: export SSH_TARGET=vagrant@192.168.33.10 && export TARGET_DIR=/home/pi/gts/mount/production/command-app-stripped
+      panes:
+        - nodemon --watch assets --watch gulpfile.js --exec "scp -r assets/ $SSH_TARGET:/tmp/ && ssh $SSH_TARGET sudo cp -rf /tmp/assets $TARGET_DIR"
+        - nodemon --watch api --watch gulpfile.js --exec "scp -r api/ $SSH_TARGET:/tmp/ && ssh $SSH_TARGET sudo cp -rf /tmp/api $TARGET_DIR"
+        - nodemon --watch config --watch gulpfile.js --exec "scp -r config/ $SSH_TARGET:/tmp/ && ssh $SSH_TARGET sudo cp -rf /tmp/config $TARGET_DIR"
+        - nodemon --watch config.js --watch gulpfile.js --exec "scp config.js $SSH_TARGET:/tmp/ && ssh $SSH_TARGET sudo cp /tmp/config.js $TARGET_DIR"
+        - ssh $SSH_TARGET

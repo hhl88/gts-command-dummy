@@ -1,0 +1,12 @@
+{
+    "preset": "airbnb",
+    "disallowSpacesInsideArrayBrackets": {
+        "allExcept": [ "[", "]", "{", "}", "," ]
+    },
+    "disallowSpacesInsideBrackets": {
+        "allExcept": [ "[", "]", "{", "}", "," ]
+    },
+    "requireCurlyBraces": null,
+    "requireSpaceAfterComma": null,
+    "requireSpacesInsideObjectBrackets": null
+}

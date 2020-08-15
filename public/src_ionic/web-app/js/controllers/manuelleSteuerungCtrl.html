@@ -1,0 +1,109 @@
+<ion-view title="Manuelle Steuerung">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+
+      <div class="list card">
+          <div class="item item-toggle" ng-class="{'manual-modus': manualModus.status}">
+            Manueller Modus
+            <label class="toggle toggle-calm">
+              <input type="checkbox" ng-model='manualModus.status'>
+              <div class="track">
+                <div class="handle"></div>
+              </div>
+            </label>
+          </div>
+      </div>
+
+      <div class="manual-control fadein fadeout" ng-show="manualModus.status">
+
+        <div class="list card">
+            <div class="item">
+              <button class="button button-royal button-block "
+              ng-click="startPlant()">Anlage in Betrieb nehmen</button>
+            </div>
+        </div>
+
+        <div class="list card">
+            <div class="item item-body">
+              Zustand der Ventile:
+
+              <div class="button-bar">
+                  <button ng-repeat="ventil in ventileStatus"
+                  ng-class="{'ventil-open': isOpen(ventil)}"
+                  style="cursor: default"
+                  class="button button-stable button-block ">{{ventil.id}}</button>
+              </div>
+
+             <small>(letzter Check: {{lastTimeChecked | timeAgo}})</small>
+
+             <div class="button-bar">
+             <button class="button button-calm  button-block "
+
+             ng-click="getStatusVentile()">Check</button>
+
+             </div>
+            </div>
+        </div>
+
+        <div class="list card">
+            <div class="item item-body">
+            Öffnen/Schließen der Ventile:
+
+              <div class="button-bar">
+
+                  <button ng-repeat="ventil in ventileOpenClose"
+                  ng-click="toggleVentil('openClose', ventil)"
+                  ng-class="{'button-activated': isActivated('openClose', ventil)}"
+                  class="button button-stable button-block ">{{ventil.id}}</button>
+              </div>
+
+             <div class="button-bar">
+               <button class="button  button-royal button-block "
+               ng-click="openVentil()">Öffnen</button>
+               <button class="button button-energized button-block "
+               ng-click="closeVentil()">Schließen</button>
+             </div>
+            </div>
+        </div>
+
+        <div class="list card">
+            <div class="item item-toggle" ng-class="{'pump-open': pumpeProps.status}">
+              Pumpe {{pumpeProps.status ? 'ein' : 'aus'}}
+            </div>
+
+            <div class="item">
+              <small>(letzter Check: {{lastTimeCheckedPumpe | timeAgo}})</small>
+              <button class="button button-calm button-block "
+              ng-click="checkPumpe()">Check</button>
+            </div>
+        </div>
+
+        <div class="list card">
+
+
+            <div class="item">
+
+              <div class="button-bar">
+
+                <button class="button button-calm button-block "
+                ng-click="timerStart()" style="background: lightcoral">Pumpenlauf Warm starten</button>
+
+                <button class="button button-calm button-block "
+                ng-click="timerStartKW()" style="background: steelblue">Pumpenlauf Kalt starten</button>
+
+              </div>
+
+            <button class="button button-positive button-block "
+            ng-click="timerStop()">Pumpenlauf beenden + Spülen</button>
+
+            <button class="button button-positive button-block " style="background: darkcyan"
+            ng-click="timerStopKS()">Pumpenlauf beenden (Ohne Spülen)</button>
+
+            <button class="button button-royal button-block "
+            ng-click="rueckspuelen()">Rückspülen</button>
+
+            </div>
+        </div>
+
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,31 @@
+<ion-view title="Alarme">
+  <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <div class="list card">
+      <div class="item item-body">
+        <div style="text-align: center;">
+          <h1>
+            Alarme
+          </h1>
+        </div>
+        <button class="button  button-block " ng-class="hasAlert('GET_ALARM_ARDUINO') ? 'button-assertive' : 'button-stable'" ng-click="">
+          Controllerverbindung fehlerhaft
+        </button>
+
+        <button class="button button-stable button-block " ng-class="hasAlert('GET_ALARM_PUMP_MIN_FLOW') ? 'button-assertive' : 'button-stable'" ng-click="">Pumpenalarm - Minimaldurchfluss
+        </button>
+
+        <button class="button button-block " ng-class="hasAlert('GET_ALARM_PUMP_MAX_FLOW') ? 'button-assertive' : 'button-stable'" ng-click="">Durchflussalarm Max. während Pumpbetrieb
+        </button>
+
+        <button class="button button-block " ng-class="hasAlert('GET_ALARM_VALVE_OFF_MAX_FLOW') ? 'button-assertive' : 'button-stable'" ng-click="">Durchflussalarm, Ventile geschlossen
+        </button>
+
+        <button class="button button-energized button-block " ng-click="resetAlarms()">Alarme resetten
+        </button>
+
+        <button class="button button-calm button-block " ng-click="getAlerts()">Check
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

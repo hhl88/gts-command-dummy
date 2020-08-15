@@ -1,0 +1,34 @@
+<ion-view title="Konfiguration">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <form class="list">
+            <ion-toggle toggle-class="toggle-positive">Benutzen</ion-toggle>
+
+            <label class="item item-input">
+                <span class="input-label">ID</span>
+                <input type="text" placeholder="zB. Aschoopstwiete">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">IP</span>
+                <input type="text" placeholder="zB. 192.168.178.78">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">Wlan-Pass</span>
+                <input type="text" placeholder="">
+            </label>
+
+            <label class="item item-input">
+                <span class="input-label">SSID</span>
+                <input type="text" placeholder="">
+            </label>
+
+        </form>
+        <div class="button-bar">
+            <button class="button button-positive button-block ">Speichern</button>
+            <button class="button button-assertive button-block ">Löschen</button>
+            <button class="button button-energized button-block "
+              ui-sref="tabsController.einstellungen">Zurück</button>
+        </div>
+    </ion-content>
+</ion-view>

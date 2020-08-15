@@ -1,0 +1,3 @@
+[submodule "ansible/library"]
+	path = ansible/library
+	url = git@github.com:eversolve/ansible-roles.git

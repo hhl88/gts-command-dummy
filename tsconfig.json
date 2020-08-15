@@ -1,0 +1,55 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "isolatedModules": false,
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "**/*.ts",
+        "**/*.tsx",
+        "!node_modules/**",
+        "!typings/browser.d.ts",
+        "!typings/browser/**"
+    ],
+    "exclude": [
+        "api_/controllers/AuthController.ts",
+        "api_/controllers/CommandController.ts",
+        "typings/main/**",
+        "typings/jquery"
+    ],
+    "compileOnSave": false,
+    "buildOnSave": false,
+    "files": [
+        "api_/commandApi.ts",
+        "api_/controllers/MetaDataController.ts",
+        "public/src_ionic/web-app/js/controllers/abfragenCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/alarmCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/dashboardCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/einstellungenCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/infoCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/konfigurationCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/loginCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/manuelleSteuerungCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/overviewCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/sonstigesCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/systemCtrl.ts",
+        "public/src_ionic/web-app/js/controllers/transferCtrl.ts",
+        "typings/globals/fs-extra/index.d.ts",
+        "typings/globals/node/index.d.ts",
+        "typings/index.d.ts",
+        "typings/modules/lodash/index.d.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
+}

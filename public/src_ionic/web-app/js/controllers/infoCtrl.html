@@ -1,0 +1,43 @@
+<ion-view title="Alarme">
+  <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <div class="list list-inset">
+        <label class="item item-input item-stacked-label">
+          <span class="label">Seriennummer</span>
+          <input disabled="" type="text" value={{device.serial}}>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="label">Straße</span>
+          <input disabled="" type="text" value={{device.street}}>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="label">PLZ</span>
+          <input disabled="" type="text" value={{device.zip}}>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="label">Ort</span>
+          <input disabled="" type="text" value={{device.city}}>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="label">Konfigurationstyp</span>
+          <input disabled="" type="text" value={{device.configType}}>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="label">Baujahr</span>
+          <input disabled="" type="text" value={{device.year}}>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="label">Inbetriebnahme</span>
+          <input disabled="" type="text" value="{{device.initDate | date: 'HH:mm dd-MM-yyyy'}}">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="label">Verkäufer</span>
+          <input disabled="" type="text" value={{device.vendor}}>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="label">Kunde</span>
+          <input disabled="" type="text" value={{device.customer}}>
+        </label>
+        <button class="button button-calm button-block " ng-click="getMeta()">Update</button>
+    </div>
+  </ion-content>
+</ion-view>

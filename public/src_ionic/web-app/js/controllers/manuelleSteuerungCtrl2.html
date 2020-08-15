@@ -1,0 +1,182 @@
+<ion-view title="Manuelle Steuerung">
+  <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <div class="list card">
+      <div class="item item-toggle" ng-class="{'manual-modus': manualModus.status}">
+          Manueller Modus
+        <label class="toggle toggle-calm">
+          <input type="checkbox" ng-model='manualModus.status'>
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="manual-control fadein fadeout" ng-show="manualModus.status">
+      <div class="divider"></div>
+      <div class="list button-card-wrapper">
+        <button class="session-title-button"
+                ng-click="checkStatus()">
+          <div class="text-long">
+            Status Ventile, Pumpe und Messwerte abfragen
+          </div>
+        </button>
+      </div>
+
+      <div class="list mt-2">
+        <div class="row justify-between">
+          <label ng-repeat="ventil in ventile"
+                 ng-class="{'ventil-open': isOnline(ventil)}"
+                 class="col-lg-2 col-md-3 col-5 mr-1 mr-md-2 mr-lg-2 label-box">{{ventil.label}}
+          </label>
+        </div>
+
+        <div class="row content-middle">
+          <div class="text-center col-lg-3 col-md-4 col-6 mr-0 mr-md-2 mr-lg-2  mt-3" ng-repeat="pump in pumpen">
+            <div class="label-description">
+              {{pump.label}}
+            </div>
+            <label class="label-box content-middle mt-1 d-flex"
+                   ng-class="isOnline(pump) ? 'pump-online' : 'pump-offline'">
+              {{pump.value}}
+            </label>
+          </div>
+
+          <div class="text-center col-lg-3 col-md-4 col-6 mr-0 mr-md-2 mr-lg-2  mt-3" ng-repeat="sensor in sensors">
+            <div class="label-description">{{sensor.label}}</div>
+            <label class="label-box content-middle mt-1 d-flex"
+                   ng-class="isOnline(sensor) ? 'sensor-online' : 'sensor-offline'">
+              {{sensor.value}}
+            </label>
+          </div>
+
+
+        </div>
+
+        <div class="row content-middle justify-around">
+          <div ng-repeat="statistic in statistics"
+               class="text-center col-lg-2 col-md-3 col-6 mr-0 mr-md-2 mr-lg-2 mt-3">
+            <div class="label-description">{{statistic.label}}</div>
+            <input class="text-field mt-1" type="text" id={{statistic.id}} value={{statistic.value}}
+                   disabled="disabled">
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="list">
+        <div class="session-title text-long">
+          Ventile auswählen + schalten
+        </div>
+
+        <div class="row mt-3 justify-between">
+          <button ng-repeat="ventil in ventile"
+                  ng-click="toggleList('ventils', ventil)"
+                  ng-class="{'ventil-open': isActivated('ventils', ventil)}"
+                  class="button button-stable button-block button-item col-lg-2 col-md-3 col-5 px-0 mr-1 mr-md-2 mr-lg-2 ">
+            {{ventil.label}}
+          </button>
+        </div>
+
+        <div class="button-bar mt-3 content-middle justify-between">
+          <button class="button button-calm button-block button-item col-md-6 col-5 px-0 mr-4"
+                  ng-click="openVentil()">
+            Öffnen
+          </button>
+          <button class="button button-assertive button-block button-item col-md-6 col-5 px-0 ml-4"
+                  ng-click="closeVentil()">
+            Schließen
+          </button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="list">
+        <div class="session-title text-long">
+          Pumpenrelais schalten
+        </div>
+        <div class="button-bar mt-3 content-middle justify-between">
+          <button class="button button-calm button-block button-item col-6 px-0 mr-4"
+                  ng-click="openPumpRelay()">
+            Relais Ein
+          </button>
+          <button class="button button-assertive button-block button-item col-6 px-0 ml-4"
+                  ng-click="closePumpRelay()">
+            Relais Aus
+          </button>
+        </div>
+      </div>
+
+
+      <div class="divider"></div>
+      <div class="list">
+        <div class="session-title text-long">
+          Betriebsmeldung ein/ausschalten
+        </div>
+        <div class="button-bar mt-3 content-middle justify-between">
+          <button class="button button-calm button-block button-item col-6 px-0 mr-4"
+                  ng-click="openReport()">
+            BM ein
+          </button>
+          <button class="button button-assertive button-block button-item col-6 px-0 ml-4"
+                  ng-click="closeReport()">
+            BM aus
+          </button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="list">
+        <div class="session-title text-long">
+          PWM (%) Signal Pumpe einstellen
+        </div>
+
+        <div class="row mt-3 vertical-middle">
+          <div class="col-lg-5 col-md-5 col-12 px-0">
+            <div class="row content-middle">
+              <button
+                ng-repeat="speed in pumpSpeed track by $index"
+                ng-class="{'ventil-open': isActivated('pumpSpeeds', speed), 'mt-1': $index > 2}"
+                class="button button-item col-3 mr-2 pump-speed-btn"
+                ng-click="toggleList('pumpSpeeds', speed, true)">
+                {{speed.label}}
+              </button>
+              <div class="col-12" ng-if="($index + 1) % 3 == 0"></div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-12 px-0">
+            <div class="row" ng-repeat="pump in pumps">
+              <button class="button button-royal button-block button-item"
+                      ng-click="setPumpSpeed(pump)">
+                {{pump.label}}
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="list">
+        <div class="session-title text-long">
+          Programme aufrufen
+        </div>
+        <div class="mt-3">
+          <div class="row" ng-repeat="button in programmButtons">
+            <button class="button button-royal button-block button-item mt-1"
+                    ng-click="button.click()">
+              <div class="text-long">
+                {{button.label}}
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+  </ion-content>
+</ion-view>

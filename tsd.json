@@ -1,0 +1,27 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "fs-extra/fs-extra.d.ts": {
+      "commit": "3030a4be536b6530c06b80081f1333dc0de4d703"
+    },
+    "node/node.d.ts": {
+      "commit": "3030a4be536b6530c06b80081f1333dc0de4d703"
+    },
+    "js-yaml/js-yaml.d.ts": {
+      "commit": "3030a4be536b6530c06b80081f1333dc0de4d703"
+    },
+    "moment/moment.d.ts": {
+      "commit": "3030a4be536b6530c06b80081f1333dc0de4d703"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "3030a4be536b6530c06b80081f1333dc0de4d703"
+    },
+    "moment/moment-node.d.ts": {
+      "commit": "3030a4be536b6530c06b80081f1333dc0de4d703"
+    }
+  }
+}

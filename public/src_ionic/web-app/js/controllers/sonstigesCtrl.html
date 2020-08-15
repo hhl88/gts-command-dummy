@@ -1,0 +1,18 @@
+<ion-view title="Sonstiges">
+  <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <div class="list card">
+      <div class="item item-body">
+        <button class="button button-stable button-block " ng-click="valuesToSD()">Messwerte auf SD speichern
+        </button>
+        <button class="button button-stable button-block " ng-click="saveServer()">Messwerte auf Server speichern
+        </button>
+        <button class="button button-stable button-block " ng-click="fetchconfig()">Konfiguration erneuern
+        </button>
+
+        <!-- Hidden because it needs more work  -->
+        <button style="display: none" class="button button-assertive button-block " ng-click="resetInit()">Gerät resetten
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

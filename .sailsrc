@@ -1,0 +1,15 @@
+{
+  "generators": {
+    "modules": {}
+  },
+  "hooks": {
+    "grunt": false,
+    "sockets": false,
+    "pubsub": false,
+    "orm": false,
+    "babel": false
+  },
+  "paths": {
+    "views": "./assets/"
+  }
+}

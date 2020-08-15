@@ -1,0 +1,107 @@
+<ion-view title="Abfragen">
+  <ion-content overflow-scroll="true" padding="true" class="has-header">
+
+    <div class="list card">
+      <div class="item item-body">
+        <button class="button button-stable button-block " ng-click="getStatus()">Alle Werte abfragen</button>
+
+        <div class="row" ng-repeat="stat in stats">
+          <div class="col">
+            {{stat.desc}}
+          </div>
+          <div class="col">
+            {{stat.value}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-body">
+        <button class="button button-stable button-block " ng-click="getFiltration()">Filtrationsart abfragen</button>
+        <h1 ng-show="filtrationMode" style="text-align: center;">{{filtrationMode}}</h1>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-body">
+
+        <ion-checkbox ng-repeat="sensor in tempSensors" ng-model="sensor.checked">Sensor {{sensor.id}}
+
+          <span ng-show="sensor.outParsed !== undefined">
+                  = {{sensor.outParsed}} °C
+                </span>
+
+          <progress max="100" ng-value="sensor.outParsed" min="0" ng-show="sensor.outParsed !== undefined"></progress>
+
+        </ion-checkbox>
+        <button class="button button-stable button-block " ng-click="getTemperature()">Temperatur messen</button>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-body">
+
+        <ion-checkbox ng-repeat="sensor in durchflussStats" ng-model="sensor.checked">Durchfluss-Sensor {{sensor.id}}
+
+          <span ng-show="sensor.outParsed !== undefined">
+                  = {{sensor.outParsed}} l/min
+                </span>
+
+          <progress max="10" ng-value="sensor.outParsed" ng-show="sensor.outParsed !== undefined"></progress>
+
+        </ion-checkbox>
+        <button class="button button-stable button-block " ng-click="getDurchfluss()">Durchfluss messen</button>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-body">
+        Druck <span ng-show="druckStats.outParsed !== undefined"> = {{druckStats.outParsed}}</span>
+        <progress max="10" ng-value="druckStats.outParsed" ng-show="druckStats.outParsed !== undefined"></progress>
+        <button class="button button-stable button-block " ng-click="getDruck()">Druck messen</button>
+      </div>
+    </div>
+
+    <div class="list card">
+
+
+      <div class="item item-body">
+        <button class="button button-stable button-block " ng-click="getDayValues()">Tageswasser abfragen</button>
+
+        <div class="item item-divider">Pumpwasser</div>
+
+        <div class="item" ng-repeat="sensor in pumpwasserTag" ng-model="sensor.checked"> {{sensor.id}}
+
+          <span ng-show="sensor.outParsed !== undefined">
+                  = {{sensor.outParsed}} m<sup>3</sup>
+                </span>
+
+          <span ng-show="sensor.error">
+                  - Nicht vorhanden
+                </span>
+
+          <progress max="10" ng-value="sensor.outParsed" ng-show="sensor.outParsed !== undefined"></progress>
+
+        </div>
+
+        <div class="item item-divider">Spülwasser</div>
+
+        <div class="item" ng-repeat="sensor in spuelwasserTag" ng-model="sensor.checked"> {{sensor.id}}
+
+          <span ng-show="sensor.outParsed !== undefined">
+                  = {{sensor.outParsed}} m<sup>3</sup>
+                </span>
+
+          <span ng-show="sensor.error">
+                  - Nicht vorhanden
+                </span>
+
+          <progress max="10" ng-value="sensor.outParsed" ng-show="sensor.outParsed !== undefined"></progress>
+
+        </div>
+
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

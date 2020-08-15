@@ -1,0 +1,13 @@
+{
+  "ignore": [
+    "config/*",
+    "api_/response/*"
+  ],
+  "test": [
+  ],
+  "dependencies": {
+    "unused-ignores": [
+      "*"
+    ]
+  }
+}

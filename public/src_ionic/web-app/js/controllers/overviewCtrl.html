@@ -1,0 +1,91 @@
+<ion-view title="Hauptmenü">
+  <ion-content overflow-scroll="true" padding="true" class="has-header">
+
+    <div class="list card">
+      <div class="item item-body">
+        Zustand der Ventile:
+
+        <div class="button-bar" ng-show="ventileStatusChecked">
+          <button ng-repeat="ventil in ventileStatus" ng-class="{'ventil-open': isOpen(ventil)}" style="cursor: default" class="button button-stable button-block ">{{ventil.id}}</button>
+        </div>
+
+        <div class="button-bar">
+          <ion-spinner icon="lines" ng-show="!ventileStatusChecked" class="spinner-calm ionicSpinner"></ion-spinner>
+        </div>
+
+        <br/> Zustand der Pumpe:
+
+        <div class="item item-toggle" ng-show="pumpePropsChecked" ng-class="{'pump-open': pumpeProps.status}">
+          Pumpe {{pumpeProps.status ? 'ein' : 'aus'}}
+        </div>
+
+        <div class="button-bar">
+          <ion-spinner icon="lines" ng-show="!pumpePropsChecked" class="spinner-calm ionicSpinner"></ion-spinner>
+        </div>
+
+
+        <div class="button-bar">
+          <button class="button button-calm  button-block " ng-click="getState()">Check</button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-body">
+        <div>
+          <p>Sie können hier den
+            <strong>Status</strong> einsehen, und die
+            <strong>Temperatur</strong> sowie den
+            <strong>Durchfluss</strong> messen.</p>
+        </div>
+        <a ui-sref="tabsController.abfragen" class="button button-stable button-block ">Parameter abfragen</a>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-body">
+        <div>
+          <p>Steuern Sie die Anlagen manuell indem Sie
+            <strong>Ventile öffnen und schließen</strong> und
+            <strong>Pumpen ein- und ausschalten</strong>
+          </p>
+        </div>
+        <a ui-sref="tabsController.manuelleSteuerung" class="button button-stable button-block ">Manuelle Steuerung</a>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-body">
+        <div>
+          <p>System ein/ausschalten</p>
+        </div>
+        <a ui-sref="tabsController.system" class="button button-stable button-block ">Systemsteuerung</a>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-body">
+        <div>
+          <p>Einsehen und resetten</p>
+        </div>
+        <a ui-sref="tabsController.alarm" ng-class="hasAlerts ? 'button-assertive' : 'button-stable'" class="button button-stable button-block ">
+          <div class="button-bar">
+            <ion-spinner icon="lines" ng-show="!alertsChecked" class="spinner-calm ionicSpinner"></ion-spinner>
+          </div>
+
+          Alarme</a>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-body">
+        <div>
+          <p>Alarma resetten, Messwerte auf SD oder Server speichern</p>
+        </div>
+        <a ui-sref="tabsController.sonstiges" class="button button-stable button-block ">Sonstiges</a>
+      </div>
+    </div>
+    <form class="list"></form>
+    <form class="list"></form>
+  </ion-content>
+</ion-view>
