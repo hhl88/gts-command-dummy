@@ -7,7 +7,7 @@
   "dependencies": {
     "ejs": "2.4.1",
     "fs-extra": "^0.26.5",
-    "jsonwebtoken": "^5.7.0",
+    "jsonwebtoken": "^9.0.0",
     "password-hash": "^1.2.2",
     "regenerator-runtime-only": "^0.8.38",
     "request": "^2.71.0",
